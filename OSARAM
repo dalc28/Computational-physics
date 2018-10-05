@@ -1,0 +1,22 @@
+def harmonic( y, t, k, m, B):
+    x , x1 = y
+    dydt = [x1, -k*x/m + B*x1/m]
+    return dydt
+
+
+inicial = [0.7, 0.5]
+t_output = np.linspace(0 , 15, 200)
+result = odeint(harmonic, inicial, t_output, args=(k, m, B))
+
+fig, ax2 = plt.subplots(ncols = 1, figsize = (10,10))
+
+xx , yy = result.T
+
+plt.plot(t_output,xx, label='Posicion')
+plt.plot(t_output,yy, label='velocidad')
+plt.title('Oscilador Armonico Amoriguado')
+plt.xlabel('tiempo (segundos)')
+plt.ylabel('y(t)')
+plt.legend()
+plt.grid()
+plt.show()
